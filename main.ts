@@ -2,7 +2,7 @@
 // Copies the static app and its screenshots into the output directory and
 // writes the dossier the judge reads, using the kit's own library so the
 // bytes match the scorer's rebuild exactly.
-import { cpSync, mkdirSync, rmSync, writeFileSync } from "node:fs";
+import { cpSync, mkdirSync, readdirSync, rmSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { buildDossier } from "./vendor/makefun-app.ts";
@@ -21,8 +21,12 @@ const gateCaps = {
 };
 
 function handIn(): void {
-  rmSync(outputDir, { recursive: true, force: true });
+  // The output directory can be a mount point in the grader, so it must
+  // never be removed itself — only the entries inside it are cleared.
   mkdirSync(outputDir, { recursive: true });
+  for (const entry of readdirSync(outputDir)) {
+    rmSync(join(outputDir, entry), { recursive: true, force: true });
+  }
   cpSync(join(rootDir, "app"), join(outputDir, "app"), { recursive: true });
   cpSync(join(rootDir, "screenshots"), join(outputDir, "screenshots"), {
     recursive: true,
