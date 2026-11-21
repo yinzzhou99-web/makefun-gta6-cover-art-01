@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vice Cover Studio — GTA-style cover art maker</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header id="topbar">
+  <div id="brand">VICE COVER <span>STUDIO</span></div>
+  <div id="tagline">Your photo. Your caption. Poster-grade cover art, offline.</div>
+  <button id="exportBtn" type="button">Export PNG</button>
+</header>
+<main id="workspace">
+  <section id="stage">
+    <canvas id="coverCanvas" width="1080" height="1080"></canvas>
+    <p id="stageHint">Click a panel to select it, drag inside it to position its photo, scroll to zoom.</p>
+  </section>
+  <aside id="panel">
+    <h2>1 · Photos</h2>
+    <div id="photoRow">
+      <label id="uploadBtn">Add your photos<input id="fileInput" type="file" accept="image/*" multiple hidden></label>
+      <button id="sceneBtn" type="button">Load demo scenes</button>
+    </div>
+    <div id="thumbStrip"></div>
+    <h2>2 · Layout</h2>
+    <div id="layoutRow" class="btnRow">
+      <button type="button" data-layout="grid4" class="on">Cover Grid</button>
+      <button type="button" data-layout="hero3">Hero + Three</button>
+      <button type="button" data-layout="six">Six Pack</button>
+      <button type="button" data-layout="trio">Triptych</button>
+      <button type="button" data-layout="full">Full Bleed</button>
+    </div>
+    <h2>3 · Panel photo</h2>
+    <div id="assignRow" class="btnRow"></div>
+    <label class="slider">Zoom <input id="zoomRange" type="range" min="100" max="300" value="100"></label>
+    <label class="slider">Shift X <input id="xRange" type="range" min="-100" max="100" value="0"></label>
+    <label class="slider">Shift Y <input id="yRange" type="range" min="-100" max="100" value="0"></label>
+    <h2>4 · Colour grade</h2>
+    <div id="gradeRow" class="btnRow">
+      <button type="button" data-grade="sunset" class="on">Vice Sunset</button>
+      <button type="button" data-grade="neon">Neon Nights</button>
+      <button type="button" data-grade="gold">Golden Hour</button>
+      <button type="button" data-grade="noir">Midnight Noir</button>
+    </div>
+    <h2>5 · Caption</h2>
+    <label class="field">Title <input id="titleInput" type="text" value="NEON HARBOR" maxlength="24"></label>
+    <label class="field">Subtitle <input id="subInput" type="text" value="every tide brings trouble" maxlength="42"></label>
+    <div id="inkRow" class="btnRow">
+      <button type="button" data-ink="sunset" class="on">Sunset ink</button>
+      <button type="button" data-ink="neon">Neon ink</button>
+      <button type="button" data-ink="clean">Clean white</button>
+    </div>
+    <label class="slider">Heat <input id="heatRange" type="range" min="0" max="5" step="1" value="3"></label>
+    <h2>6 · Post size</h2>
+    <div id="sizeRow" class="btnRow">
+      <button type="button" data-size="1080x1080" class="on">Square 1080×1080</button>
+      <button type="button" data-size="1080x1350">Portrait 1080×1350</button>
+      <button type="button" data-size="1920x1080">Wide 1920×1080</button>
+    </div>
+  </aside>
+</main>
+<script type="module" src="src/main.js"></script>
+</body>
+</html>

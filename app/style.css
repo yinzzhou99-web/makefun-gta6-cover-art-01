@@ -1,0 +1,69 @@
+:root {
+  --ink: #f5efe6;
+  --deep: #160b26;
+  --panel: #221239;
+  --line: #3d2560;
+  --pink: #ff4d8d;
+  --teal: #2ee6c8;
+  --amber: #ffb347;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: radial-gradient(1200px 700px at 70% -10%, #43206e 0%, var(--deep) 55%) fixed, var(--deep);
+  color: var(--ink);
+  font: 15px/1.45 "Segoe UI", system-ui, sans-serif;
+  min-height: 100vh;
+}
+#topbar {
+  display: flex; align-items: center; gap: 18px;
+  padding: 12px 20px; border-bottom: 1px solid var(--line);
+  background: rgba(20, 9, 38, 0.85); position: sticky; top: 0; z-index: 5;
+}
+#brand {
+  font-family: "Arial Black", "Segoe UI", sans-serif; font-size: 22px; letter-spacing: 1px;
+  color: var(--amber); text-shadow: 0 2px 0 #7a1f4d;
+}
+#brand span { color: var(--teal); }
+#tagline { flex: 1; opacity: 0.75; font-style: italic; }
+#exportBtn {
+  background: linear-gradient(180deg, var(--pink), #c72c68); color: #fff; border: 0;
+  font: 700 16px "Segoe UI", sans-serif; padding: 10px 22px; border-radius: 8px; cursor: pointer;
+  box-shadow: 0 3px 0 #7a1f4d;
+}
+#exportBtn:hover { filter: brightness(1.1); }
+#workspace { display: flex; gap: 20px; padding: 18px 20px; align-items: flex-start; }
+#stage { flex: 1; min-width: 320px; text-align: center; }
+#coverCanvas {
+  max-width: 100%; max-height: calc(100vh - 170px); width: auto; height: auto;
+  border-radius: 6px; box-shadow: 0 18px 50px rgba(0,0,0,0.55); cursor: grab; background: #000;
+}
+#stageHint { opacity: 0.65; font-size: 13px; }
+#panel {
+  width: 320px; flex: none; background: var(--panel); border: 1px solid var(--line);
+  border-radius: 10px; padding: 6px 16px 16px;
+}
+#panel h2 { font-size: 13px; text-transform: uppercase; letter-spacing: 2px; color: var(--amber); margin: 16px 0 8px; }
+.btnRow { display: flex; flex-wrap: wrap; gap: 6px; }
+.btnRow button, #uploadBtn, #sceneBtn {
+  background: #2e1a4d; color: var(--ink); border: 1px solid var(--line); border-radius: 6px;
+  padding: 6px 10px; font: 600 13px "Segoe UI", sans-serif; cursor: pointer;
+}
+.btnRow button.on { background: var(--pink); border-color: var(--pink); color: #fff; }
+#photoRow { display: flex; gap: 6px; flex-wrap: wrap; }
+#uploadBtn { background: var(--teal); color: #07332a; border-color: var(--teal); }
+#thumbStrip { display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap; }
+#thumbStrip canvas { width: 52px; height: 52px; object-fit: cover; border-radius: 5px; border: 2px solid transparent; }
+#thumbStrip canvas.sel { border-color: var(--amber); }
+.slider { display: flex; align-items: center; gap: 10px; margin: 7px 0; font-size: 13px; }
+.slider input { flex: 1; accent-color: var(--pink); }
+.field { display: block; margin: 7px 0; font-size: 13px; }
+.field input {
+  width: 100%; margin-top: 3px; background: #170b2c; color: var(--ink);
+  border: 1px solid var(--line); border-radius: 6px; padding: 7px 9px; font-size: 14px;
+}
+body.shot { background: #000; }
+body.shot #topbar, body.shot #panel, body.shot #stageHint { display: none; }
+body.shot #workspace { padding: 0; }
+body.shot #stage { min-width: 0; }
+body.shot #coverCanvas { max-width: none; max-height: none; border-radius: 0; box-shadow: none; }
